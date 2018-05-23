@@ -21,8 +21,7 @@ public class WebServer extends NanoHTTPD {
 
     private final AccountService accountService = new AccountService();
 
-    private Logger log = Logger.getLogger(WebServer.class.getName());
-
+    private static final Logger log = Logger.getLogger(WebServer.class.getName());
 
     private final Gson gson = new GsonBuilder()
             .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)

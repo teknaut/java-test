@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 
 public class AccountService {
 
-    private Logger log = Logger.getLogger(AccountService.class.getName());
+    private static final Logger log = Logger.getLogger(AccountService.class.getName());
 
     private final Map<Long, Account> accounts = new ConcurrentHashMap<>();
 
@@ -44,7 +44,7 @@ public class AccountService {
             response.setResponseCode(400);
         }
         catch(Exception ex){
-            String error = "cannot create account";
+            String error = "cannot create account : " + ex.getMessage();
             log.warning(error);
             response.setResult(error);
             response.setResponseCode(400);
