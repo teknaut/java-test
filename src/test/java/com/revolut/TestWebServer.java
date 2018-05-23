@@ -1,8 +1,5 @@
 package com.revolut;
 
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -24,6 +21,8 @@ import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+
+import java.nio.charset.StandardCharsets;
 
 
 public class TestWebServer {
@@ -58,7 +57,7 @@ public class TestWebServer {
     }
 
     @Test(priority=1)
-    public void testNormalRequest() throws Exception {
+    public void testNormalRequest()  {
         try(CloseableHttpClient client = HttpClients.createDefault()) {
             HttpGet httphead = new HttpGet("http://localhost:8080/");
             CloseableHttpResponse response = client.execute(httphead);
@@ -71,7 +70,7 @@ public class TestWebServer {
     }
 
     @Test(priority=2)
-    public void testBadRequest() throws Exception {
+    public void testBadRequest() {
         try(CloseableHttpClient client = HttpClients.createDefault()) {
             HttpGet httphead = new HttpGet("http://localhost:8080/wrong");
             CloseableHttpResponse response = client.execute(httphead);
@@ -84,7 +83,7 @@ public class TestWebServer {
     }
 
     @Test(priority=3)
-    public void testCreateAccount() throws Exception {
+    public void testCreateAccount() {
         String url = "http://localhost:8080/create";
 
         try(CloseableHttpClient client = HttpClients.createDefault()) {
@@ -103,7 +102,7 @@ public class TestWebServer {
     }
 
     @Test(priority=4)
-    public void testListAccounts() throws IOException {
+    public void testListAccounts() {
         try(CloseableHttpClient client = HttpClients.createDefault()) {
             HttpGet httphead = new HttpGet("http://localhost:8080/list");
             CloseableHttpResponse response = client.execute(httphead);
@@ -121,7 +120,7 @@ public class TestWebServer {
     }
 
     @Test(priority=5)
-    public void testGetBalance() throws IOException {
+    public void testGetBalance()  {
         try(CloseableHttpClient client = HttpClients.createDefault()) {
             HttpGet httphead = new HttpGet("http://localhost:8080/balance/123456789");
             CloseableHttpResponse response = client.execute(httphead);
