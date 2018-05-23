@@ -132,7 +132,7 @@ public class TestWebServer {
             waitForResponse();
         }
         catch(Exception ex){
-            ex.printStackTrace();
+            Assert.fail(ex.getMessage());
         }
     }
 
@@ -181,7 +181,7 @@ public class TestWebServer {
             waitForResponse();
         }
         catch(Exception ex){
-            ex.printStackTrace();
+            Assert.fail(ex.getMessage());
         }
     }
 
@@ -215,7 +215,7 @@ public class TestWebServer {
             waitForResponse();
         }
         catch(Exception ex){
-            ex.printStackTrace();
+            Assert.fail(ex.getMessage());
         }
     }
 
