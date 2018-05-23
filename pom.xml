@@ -24,7 +24,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>com.sk.revolut.Application</mainClass>
+                            <mainClass>com.revolut.Main</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>
