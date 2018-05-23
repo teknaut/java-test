@@ -1,20 +1,21 @@
 package com.revolut.services;
 
-import java.util.List;
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.stream.Collectors;
-
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.revolut.model.Account;
 import com.revolut.model.Responses.BasicResponse;
 import com.revolut.model.Transfer;
-import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.logging.Logger;
+import java.util.stream.Collectors;
+
 public class AccountService {
+
+    private Logger log = Logger.getLogger(AccountService.class.getName());
 
     private final Map<Long, Account> accounts = new ConcurrentHashMap<>();
 
@@ -38,13 +39,13 @@ public class AccountService {
         }
         catch(IllegalStateException iex){
             String error = "creation failed an account with this id already exists";
-            log.error(error);
+            log.warning(error);
             response.setResult(error);
             response.setResponseCode(400);
         }
         catch(Exception ex){
             String error = "cannot create account";
-            log.error(error);
+            log.warning(error);
             response.setResult(error);
             response.setResponseCode(400);
         }
@@ -93,7 +94,7 @@ public class AccountService {
             response.setResult("success");
         } else {
             String error = "insufficient funds";
-            log.error(error + "in transfer from " + accountFrom + " to " + accountTo);
+            log.warning(error + "in transfer from " + accountFrom + " to " + accountTo);
             response.setResult(error);
             response.setResponseCode(400);
         }

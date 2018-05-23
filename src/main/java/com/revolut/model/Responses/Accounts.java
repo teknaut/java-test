@@ -2,11 +2,15 @@ package com.revolut.model.Responses;
 
 import java.util.List;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-
-@Data
-@AllArgsConstructor
 public class Accounts {
     private List<Long> accounts;
- }
+
+    public Accounts(List<Long> accounts) {
+        this.accounts = accounts;
+    }
+
+    public List<Long> getAccounts() {
+        return accounts;
+    }
+
+}

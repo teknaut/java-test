@@ -1,12 +1,5 @@
 package com.revolut.http;
 
-import static fi.iki.elonen.NanoHTTPD.Response.Status.BAD_REQUEST;
-import static fi.iki.elonen.NanoHTTPD.Response.Status.OK;
-
-import java.util.HashMap;
-import java.util.Map;
-import java.util.concurrent.Executors;
-
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -14,12 +7,22 @@ import com.revolut.model.Responses.Accounts;
 import com.revolut.model.Responses.BasicResponse;
 import com.revolut.services.AccountService;
 import fi.iki.elonen.NanoHTTPD;
-import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
+import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.Executors;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import static fi.iki.elonen.NanoHTTPD.Response.Status.BAD_REQUEST;
+import static fi.iki.elonen.NanoHTTPD.Response.Status.OK;
+
 public class WebServer extends NanoHTTPD {
 
     private final AccountService accountService = new AccountService();
+
+    private Logger log = Logger.getLogger(WebServer.class.getName());
+
 
     private final Gson gson = new GsonBuilder()
             .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
@@ -57,7 +60,7 @@ public class WebServer extends NanoHTTPD {
                 try {
                     accountId = Long.parseLong(res[2]);
                 } catch (Exception ex) {
-                    log.error("invalid path : " + session.getUri());
+                    log.warning("invalid path : " + session.getUri());
                     return newFixedLengthResponse(Response.Status.BAD_REQUEST,
                             NanoHTTPD.MIME_PLAINTEXT, "Error 400, invalid path.");
                 }
@@ -95,7 +98,7 @@ public class WebServer extends NanoHTTPD {
                         NanoHTTPD.MIME_PLAINTEXT, "Error 404, path not found.");
             }
         } catch (Exception e) {
-            log.error(null, e);
+            log.log(Level.WARNING, "unable to process request", e);
         }
         return response;
     }

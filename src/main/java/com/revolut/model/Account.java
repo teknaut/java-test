@@ -2,9 +2,6 @@ package com.revolut.model;
 
 import javax.validation.constraints.NotNull;
 
-import lombok.Data;
-
-@Data
 public class Account {
 
     @NotNull
@@ -16,4 +13,21 @@ public class Account {
      */
     @NotNull
     private Long balance;
+
+
+    public Long getAccountId() {
+        return accountId;
+    }
+
+    public void setAccountId(Long accountId) {
+        this.accountId = accountId;
+    }
+
+    public Long getBalance() {
+        return balance;
+    }
+
+    public void setBalance(Long balance) {
+        this.balance = balance;
+    }
 }

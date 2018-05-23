@@ -2,9 +2,6 @@ package com.revolut.model.Responses;
 
 import javax.validation.constraints.NotNull;
 
-import lombok.Data;
-
-@Data
 public class BasicResponse {
 
     @NotNull
@@ -12,4 +9,21 @@ public class BasicResponse {
 
     @NotNull
     int responseCode;
+
+
+    public String getResult() {
+        return result;
+    }
+
+    public void setResult(String result) {
+        this.result = result;
+    }
+
+    public int getResponseCode() {
+        return responseCode;
+    }
+
+    public void setResponseCode(int responseCode) {
+        this.responseCode = responseCode;
+    }
 }
