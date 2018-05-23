@@ -4,6 +4,7 @@ API for transferring of funds from one account to another
 requires jdk8 and maven
 
 to build with maven and run
+
 mvn install
 
 cd target
