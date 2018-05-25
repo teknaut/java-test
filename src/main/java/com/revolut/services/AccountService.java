@@ -110,7 +110,7 @@ public class AccountService {
      * @return
      */
     public Boolean validateTransfer(Account accountFrom, Long balanceToTransfer) {
-        return (balanceToTransfer > 0 && accountFrom.getBalance() - balanceToTransfer > 0);
+        return (balanceToTransfer > 0 && accountFrom.getBalance() - balanceToTransfer >= 0);
     }
 
 }
